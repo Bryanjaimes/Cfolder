@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char mystr[10] = "Hello";
+    char mystr2[10] = {'B', 'y', 'e'};
+    char mystr3[10];
+    printf("Enter a name: ");
+    scanf("%s", mystr3);
+    printf("%s and %s, %s\n", mystr, mystr2, mystr3);
+
+    strcpy(mystr, mystr2);
+    strcat(mystr2, mystr3);
+    int length = strlen(mystr2);
+    int same = strcmp(mystr, mystr2);
+    printf("%s and %s, mystr2 has length %d\n", mystr, mystr2,length);
+    if (same == 1)
+    printf("They are the same.");
+    else
+    printf("They are not the same.");
+
+    return 0;
+}

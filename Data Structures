@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+typedef struct linked_list
+{
+   int data;
+   struct linked_list *next;
+}   element;
+
+typedef element * elementptr;
+
+void trav_and_print(elementptr);
+int count_elems(elementptr);
+void just_checkin(elementptr, elementptr);
+elementptr position_current(elementptr,int);
+
+int main()
+{
+   srand(time(NULL)); 
+   elementptr first = NULL, last = NULL, randelement = NULL, temp = NULL;
+   int i;
+
+   /* Create a linked list with one element            */
+   /* NOTE: the first element is always a special case */
+   first = (elementptr) malloc(sizeof(element));
+   last = first;
+   last -> data = 5;
+   last -> next = NULL;
+
+   /* Add 5 other elements to list */
+
+   for(i=3;i<=15;i+=3)
+   {
+   last -> next = (elementptr) malloc(sizeof(element));
+   last = last -> next;
+   last -> data = i;
+   last -> next = NULL;       
+   }
+
+   randelement = position_current(first, count_elems(first));
+   temp = randelement;
+   randelement = randelement -> next;
+   free(temp);
+
+   just_checkin(first,last);
+
+   free(first);
+   free(last);
+
+   return 0;
+}
+   void trav_and_print(elementptr current)
+   {
+        while (current != NULL)
+        {
+            printf("The data value is %d\n", current -> data);
+            current = current -> next;
+        }
+   }
+
+   int count_elems(elementptr current)
+   {
+       int count = 0;
+        while (current != NULL)
+        {
+            current = current -> next;
+            count++;
+        }
+        return count;
+   }
+
+   void just_checkin(elementptr first, elementptr last)
+   {
+       trav_and_print(first);
+       printf("The current number of elements is %d\n", count_elems(first));
+       printf("The first element is %d and the last element is %d", first -> data, last -> data);
+   }
+
+   elementptr position_current(elementptr first, int count)
+   {
+       int index = rand()*count;
+       elementptr current = first;
+       int i;
+
+       for(i=0;i<=index;i++)
+       {
+        current = current -> next;
+       }
+
+       return current;
+   }
+

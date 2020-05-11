@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main()
+{
+    int choice;
+
+    printf("Please enter a choice (1-3): ");
+    scanf("%d", &choice);
+
+    switch (choice)
+    {
+    case 1:
+    printf("How are you?");
+    break;
+    case 2:
+    printf("What are you doing?");
+    break;
+    case 3:
+    printf("Why are you doing that?");
+    break;
+    default:
+    printf("Please make a valid choice!");
+    }
+
+    return 0;
+}

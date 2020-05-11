@@ -2,21 +2,51 @@
 #include <time.h>
 #include <stdlib.h>
 
-#define N 8
+#define ROWS 8
+#define COLS 4
 int main()
 {
     srand(time(NULL));
-    int i, nums[N];
-    for (i=0; i<N; i++)
+    int i,j,nums[ROWS][COLS];
+    for (i=0;i<ROWS;i++)
     {
-    nums[i] = rand()%20+1;
-    printf("%d ", nums[i]);
+        for(j=0;j<COLS;j++)
+        nums[i][j] = rand()%101;
+    }
+
+    for (i=0;i<ROWS;i++)
+    {
+        printf("\n");
+        for(j=0;j<COLS;j++)
+        printf("%d   ", nums[i][j]);
+    }
+
+    float sum = 0, count = 0;
+     for (i=0;i<ROWS;i++)
+    {
+        for(j=0;j<COLS;j++)
+        sum = sum + nums[i][j];
+    }
+    printf("\nThe overall average is %.2f", sum/(ROWS*COLS));
+
+    float rowsum;
+    for (i=0;i<ROWS;i++)
+    {
+        rowsum = 0;
+        for(j=0;j<COLS;j++){
+        rowsum = rowsum + nums[i][j];
+        }
+        printf("\nThe average for row %d is %.2f", i+1, rowsum/COLS);
     }
     
-    printf("\n");
-
-    for (i=N-1;i>=0;i--)
-    printf("%d ", nums[i]);
-
+    float colsum;
+        for (j=0;j<COLS;j++)
+    {
+        colsum = 0;
+        for(i=0;i<ROWS;i++){
+        colsum = colsum + nums[i][j];
+        }
+        printf("\nThe average for col %d is %.2f", j+1, colsum/ROWS);
+    }
     return 0;
 }

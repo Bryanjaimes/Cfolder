@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void initialize(int **, char **);
+
+int main()
+{
+    int *a;
+    char *b;
+
+    initialize(&a, &b);
+
+    printf("The value of a is %d\n", *a);
+    printf("The value of b is %c\n", *b);
+
+}
+
+void initialize(int **a, char **b)
+{
+    *a = (int *) malloc(sizeof(int));
+    **a = 4;
+    *b = (char *) malloc(sizeof(char));
+    **b = 'h';
+}
